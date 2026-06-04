@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://optimacode8.onrender.com/api';
+
 const API = axios.create({
-	baseURL: import.meta.env.VITE_API_URL,
+	baseURL: BASE_URL,
 	headers: { 'Content-Type': 'application/json' },
 });
 
@@ -25,7 +27,7 @@ API.interceptors.response.use(
 
 				if (!refreshToken) throw new Error('No refresh token');
 
-				const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/refresh-token`, { refreshToken });
+				const response = await axios.post(`${BASE_URL}/auth/refresh-token`, { refreshToken });
 				const { accessToken } = response.data;
 
 				localStorage.setItem('accessToken', accessToken);
