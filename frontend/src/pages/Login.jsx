@@ -34,7 +34,7 @@ const Login = () => {
             const res = await API.post('/auth/login', { email, password });
             const { accessToken, refreshToken, user: userData } = res.data;
             login(accessToken, refreshToken, userData);
-            navigate('/problems');
+            navigate('/');
         } catch {
             setError('Invalid email or password. Please try again.');
         } finally {
