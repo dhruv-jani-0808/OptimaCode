@@ -13,7 +13,7 @@ const getAllProblems = async (req, res) => {
 const getProblemById = async (req, res) => {
     const { id } = req.params;
     try {
-        const problem = await Problem.findById(id).select('-editorialCode');
+        const problem = await Problem.findById(id);
         if(!problem) {
             return res.status(404).json({ message: 'Problem not found' });
         }
